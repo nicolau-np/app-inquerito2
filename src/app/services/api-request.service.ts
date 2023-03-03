@@ -16,6 +16,10 @@ export class ApiRequestService {
     return this.http.get(API_PATH + url + "/" + id)
   }
 
+  getmodels(url: string, id: number, url2: string) {
+    return this.http.get(API_PATH + url + "/" + id + "/" + url2)
+  }
+
   store(url: string, data: any) {
     return this.http.post(API_PATH + url, data)
   }
@@ -34,5 +38,11 @@ export class ApiRequestService {
 
   search(url: string, data: any) {
     return this.http.post(API_PATH + url, data)
+  }
+
+  download(url: string) {
+    return this.http.get(API_PATH + url, {
+      responseType: 'blob' as 'json'
+    });
   }
 }

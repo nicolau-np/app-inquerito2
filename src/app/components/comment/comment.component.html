@@ -1,3 +1,42 @@
-<form>
-  
-  </form>
+<div class="row">
+  <div class="col-md-12">
+    <div class="alert alert-success" *ngIf="message">{{message}}</div>
+  </div>
+  <div class="col-md-12">
+    <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-12">
+
+          <textarea formControlName="comment" class="form-control"
+            placeholder="Comenta aqui"></textarea>
+          <span class="text-danger" *ngIf="errors.comment">{{errors.comment}}</span>
+        </div>
+        <div class="col-md-12 mt-2">
+          <button type="submit" class="btn btn-primary">Comentar</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+
+  <div class="col-md-12 mt-4">
+
+    <div *ngFor="let comment of comments" class="comment mt-4 text-justify
+      float-left">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
+        alt="" class="rounded-circle" width="40" height="40">
+      <h5>Anonimous</h5>
+      <span>{{comment.created_at}}</span>
+      <br>
+      <p>{{comment.comment}}</p>
+    </div>
+
+
+
+
+  </div>
+
+
+</div>
