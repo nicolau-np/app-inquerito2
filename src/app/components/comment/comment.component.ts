@@ -49,4 +49,12 @@ export class CommentComponent implements OnInit {
     })
   }
 
+  onReply(id: number) {
+    alert("reply: " + id)
+  }
+
+  onReact(id: number) {
+    alert("react: " + id)
+  }
+
 }

@@ -31,10 +31,9 @@
       <span>{{comment.created_at}}</span>
       <br>
       <p>{{comment.comment}}</p>
+      <span class="replies_count"><a href="#" (click)="onReply(comment.id)">({{comment.replies_count}}) Respostas </a></span>&nbsp;
+      <span class="reaction_count"><a href="#" (click)="onReact(comment.id)">({{comment.reaction_count}}) Reações</a></span>
     </div>
-
-
-
 
   </div>
 
