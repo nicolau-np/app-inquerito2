@@ -1,1 +1,46 @@
-<p>reply works!</p>
+<div class="modal fade" id="modal-reply{{paren.id}}" data-bs-backdrop="static"
+  data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Responder</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <form [formGroup]="reactiveFormReply" (ngSubmit)="onSubmitReply()">
+              <div class="row">
+                <div class="col-md-12">
+                  <p>{{paren.comment}}</p>
+                </div>
+                <div class="col-md-12">
+
+                  <textarea formControlName="reply" class="form-control"
+                    placeholder="Responde aqui"></textarea>
+                  <span class="text-danger" *ngIf="errors.reply">{{errors.reply}}</span>
+                </div>
+                <div class="col-md-12 mt-2">
+                  <button type="submit" class="btn btn-primary">Comentar</button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div *ngFor="let replie of replies" class="comment mt-4 text-justify
+              float-left">
+              <span>{{replie.created_at}}</span>
+              <br>
+              <p>{{replie.reply}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

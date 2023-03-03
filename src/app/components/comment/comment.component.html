@@ -19,7 +19,6 @@
     </form>
   </div>
 
-
   <div class="col-md-12 mt-4">
 
     <div *ngFor="let comment of comments" class="comment mt-4 text-justify
@@ -31,11 +30,15 @@
       <span>{{comment.created_at}}</span>
       <br>
       <p>{{comment.comment}}</p>
-      <span class="replies_count"><a href="#" (click)="onReply(comment.id)">({{comment.replies_count}}) Respostas </a></span>&nbsp;
-      <span class="reaction_count"><a href="#" (click)="onReact(comment.id)">({{comment.reaction_count}}) Reações</a></span>
+      <span class="replies_count"><a href="#" (click)="onReply(comment.id)">({{comment.replies_count}})
+          Respostas </a></span>&nbsp;
+      <span class="reaction_count"><a href="#" (click)="onReact(comment.id)">({{comment.reaction_count}})
+          Reações</a></span>
+
+      <app-reply [paren]="comment"></app-reply>
+      <app-react [paren]="comment"></app-react>
     </div>
 
   </div>
-
 
 </div>

@@ -1,21 +1,27 @@
 import { ApiRequestService } from './../../services/api-request.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+declare var window: any;
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css']
 })
+
 export class CommentComponent implements OnInit {
   @Input() public paren: any
   comments: any
   reactiveForm!: FormGroup;
   message: string = ''
+  replyModal: any
+  reactModal: any
+
   errors = {
     comment: null,
     id_post: null,
   }
+
 
   constructor(private api: ApiRequestService) { }
 
@@ -26,6 +32,11 @@ export class CommentComponent implements OnInit {
       id_post: new FormControl(null),
     })
     this.getComments()
+
+
+    this.reactModal = new window.bootstrap.Modal(
+      document.getElementById('modal-react')
+    )
   }
 
   onSubmit() {
@@ -50,11 +61,17 @@ export class CommentComponent implements OnInit {
   }
 
   onReply(id: number) {
-    alert("reply: " + id)
+    this.replyModal = new window.bootstrap.Modal(
+      document.getElementById('modal-reply' + id)
+    )
+    this.replyModal.show()
   }
 
   onReact(id: number) {
-    alert("react: " + id)
+    this.reactModal = new window.bootstrap.Modal(
+      document.getElementById('modal-react' + id)
+    )
+    this.reactModal.show()
   }
 
 }
