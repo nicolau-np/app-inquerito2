@@ -1,4 +1,4 @@
 <div>
   <h1 *ngFor="let post of posts">{{post.post}}?</h1>
-  <app-comment></app-comment>
+  <app-comment [paren]="parent"></app-comment>
 </div>

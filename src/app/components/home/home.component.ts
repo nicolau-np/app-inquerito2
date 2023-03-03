@@ -11,6 +11,10 @@ export class HomeComponent implements OnInit {
 
   posts: any;
 
+  parent = {
+    nome: 'hello'
+  };
+
   constructor(private title: Title, private api: ApiRequestService) {
     title.setTitle('IPH TCC')
   }
