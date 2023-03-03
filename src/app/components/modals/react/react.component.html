@@ -11,8 +11,11 @@
       <div class="modal-body">
 
         <div class="row">
-          <div class="react col-md-2 col-sm-2" *ngFor="let react of reactions">
-            {{react.type}}
+          <div class="col-md-2 col-sm-2" *ngFor="let react of reactions">
+            <a href="#" (click)="onReact(react.id)">
+              <p>{{react.type}}</p>
+              <img src="{{react.image}}" class="img_react"/>
+            </a>
           </div>
         </div>
       </div>
