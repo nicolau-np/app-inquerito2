@@ -2,6 +2,6 @@
   <div class="post" *ngFor="let post of posts">
     <h1>{{post.post}}?</h1>
     <span class="total_comments">({{post.comment_total}}) Comentários</span>
-    <app-comment [paren]="post"></app-comment>
+    <app-comment [paren]="post" (setComment)="onSetComment()"></app-comment>
   </div>
 </div>

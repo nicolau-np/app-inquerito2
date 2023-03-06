@@ -26,17 +26,17 @@
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
         alt="" class="rounded-circle" width="40" height="40">
-      <h5>Anonimous</h5>
+      <!--<h5>Anonimous</h5>-->
       <span>{{comment.created_at}}</span>
       <br>
       <p>{{comment.comment}}</p>
-      <span class="replies_count"><a href="#" (click)="onReply(comment.id)">({{comment.replies_count}})
+      <!--<span class="replies_count"><a href="#" (click)="onReply(comment.id)">({{comment.replies_count}})
           Respostas </a></span>&nbsp;
       <span class="reaction_count"><a href="#" (click)="onReact(comment.id)">({{comment.reaction_count}})
           Reações</a></span>
 
-      <app-reply [paren]="comment"></app-reply>
-      <app-react [paren]="comment"></app-react>
+      <app-reply [paren]="comment" (setReply)="onSetReply($event)"></app-reply>
+      <app-react [paren]="comment" (setReactions)="onSetReact($event)"></app-react>-->
     </div>
 
   </div>

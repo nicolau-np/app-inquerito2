@@ -16,10 +16,20 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.getPosts()
+
+  }
+
+  getPosts() {
     this.api.index('/posts').subscribe((response: any) => {
       this.posts = response.data
       console.log(response.data)
     })
+  }
+
+  onSetComment() {
+    this.getPosts()
   }
 
 }

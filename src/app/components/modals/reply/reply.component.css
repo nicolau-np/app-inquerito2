@@ -1,3 +1,23 @@
 *{
   color: #000;
 }
+
+.comment{
+  width: 100%;
+  border: 1px solid #1976d2;
+  border-radius: 4px;
+  padding-left: 7px;
+  padding-right: 7px;
+  float: left;
+  background: #c0c0c0;
+  color: #fff;
+  font-size: 12px;
+}
+.rounded-circle{
+border-radius: 50%;
+}
+
+.comment p{
+font-size: 17px;
+font-weight:bold;
+}

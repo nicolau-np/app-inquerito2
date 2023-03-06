@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ReplyComponent implements OnInit {
   @Input() public paren: any;
+  @Output() public setReply = new EventEmitter<{ id_comment: number }>();
   reactiveFormReply!: FormGroup;
   errors = {
     reply: null
@@ -27,13 +28,14 @@ export class ReplyComponent implements OnInit {
       reply: new FormControl(null, Validators.required)
     })
 
-    this.getReplies();
+    this.getReplies()
   }
 
   getReplies() {
-    this.api.getmodels('/comments', this.paren.id, 'replies').subscribe((response: any) => {
+    /*this.api.getmodels('/comments', this.paren.id, 'replies').subscribe((response: any) => {
       this.replies = response.data
-    })
+    })*/
+    this.replies = this.paren.replies
   }
 
   onSubmitReply() {
@@ -45,6 +47,7 @@ export class ReplyComponent implements OnInit {
       this.reactiveFormReply.reset()
       this.message = "Feito com sucesso"
       this.getReplies()
+      this.setReply.emit({ id_comment: this.paren.id })
     }, (exception: any) => {
       this.errors = exception.error.errors
     })

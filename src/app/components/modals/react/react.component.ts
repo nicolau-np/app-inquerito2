@@ -9,24 +9,30 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ReactComponent implements OnInit {
   @Input() public paren: any
+  @Output() public setReactions = new EventEmitter<{ id_comment: number }>();
   reactions: any
 
   constructor(private api: ApiRequestService) { }
 
   ngOnInit(): void {
+    this.getReactions()
+  }
+
+  getReactions() {
     this.api.index('/reactions/types').subscribe((response: any) => {
       this.reactions = response.data
     })
+
   }
 
   onReact(id: number) {
 
-  const reaction_comment = {
+    const reaction_comment = {
       id_reaction_type: id,
       id_comment: this.paren.id
     }
     this.api.store('/reactions', reaction_comment).subscribe((response: any) => {
-
+      this.setReactions.emit({ id_comment: this.paren.id })
     })
   }
 }

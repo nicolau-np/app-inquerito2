@@ -1,5 +1,5 @@
 import { ApiRequestService } from './../../services/api-request.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 declare var window: any;
 
@@ -11,6 +11,8 @@ declare var window: any;
 
 export class CommentComponent implements OnInit {
   @Input() public paren: any
+  @Output() public setComment = new EventEmitter<any>();
+
   comments: any
   reactiveForm!: FormGroup;
   message: string = ''
@@ -22,7 +24,6 @@ export class CommentComponent implements OnInit {
     id_post: null,
   }
 
-
   constructor(private api: ApiRequestService) { }
 
   ngOnInit(): void {
@@ -31,12 +32,13 @@ export class CommentComponent implements OnInit {
       comment: new FormControl(null, Validators.required),
       id_post: new FormControl(null),
     })
+
+    console.log(this.paren)
+
     this.getComments()
-
-
-    this.reactModal = new window.bootstrap.Modal(
+    /*this.reactModal = new window.bootstrap.Modal(
       document.getElementById('modal-react')
-    )
+    )*/
   }
 
   onSubmit() {
@@ -48,7 +50,7 @@ export class CommentComponent implements OnInit {
       this.getComments()
       this.reactiveForm.reset()
       this.message = "Feito com sucesso"
-
+      this.setComment.emit()
     }, (exception: any) => {
       this.errors = exception.error.errors
     })
@@ -58,9 +60,10 @@ export class CommentComponent implements OnInit {
     this.api.getmodels('/posts', this.paren.id, 'comments').subscribe((response: any) => {
       this.comments = response.data
     })
+
   }
 
-  onReply(id: number) {
+  /*onReply(id: number) {
     this.replyModal = new window.bootstrap.Modal(
       document.getElementById('modal-reply' + id)
     )
@@ -73,5 +76,15 @@ export class CommentComponent implements OnInit {
     )
     this.reactModal.show()
   }
+
+  onSetReply(data: any) {
+    this.replyModal.hide()
+    this.getComments()
+  }
+
+  onSetReact(data: any) {
+    this.reactModal.hide()
+    this.getComments()
+  }*/
 
 }
